@@ -21,8 +21,18 @@ class NewTodoForm extends Component {
         return (
             <div>
                 <form>
-                    <input type="text" name="item" placeholder="Add a New Todo Item"/>
-                    <button onClick={this.handleSubmit}>Save</button>
+                    <input
+                        type="text"
+                        name="item"
+                        id="item"
+                        value={this.state.item}
+                        placeholder="Add a New Todo Item"
+                        onChange={this.handleChange} />
+
+                    <button
+                        onClick={this.handleSubmit}>
+                        Save
+                    </button>
                 </form>
             </div>
         );

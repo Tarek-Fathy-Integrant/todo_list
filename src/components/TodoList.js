@@ -17,7 +17,7 @@ class TodoList extends Component {
         this.deleteItem = this.deleteItem.bind(this);
     }
     addItem(itemInfo) {
-        const newTodos = [...this.state.Todos, { ...itemInfo, key: uuidv4() }]
+        const newTodos = [...this.state.Todos, {...itemInfo} ]
         this.setState({ Todos: newTodos });
     }
     deleteItem(key) {
@@ -25,19 +25,15 @@ class TodoList extends Component {
         this.setState({ Todos: newTodos })
     }
     render() {
-        const Todos = this.state.Todos.map(Todo => {
-            return <TodoItem key={Todo.key} item={Todo.item} deleteItem={this.deleteItem} />
+        const Todos = this.state.Todos.map((Todo) => {
+            return <TodoItem key={uuidv4()} item={Todo.item} deleteItem={this.deleteItem} />
         })
         return (
             <section className='TodoList'>
-                <ul className='TodoList-Container'>
-                    {Todos}
-                    <TodoItem item="asdasd"/>
-                    <TodoItem item="asdasd"/>
-                    <TodoItem item="asdasd"/>
-                    <TodoItem item="asdasd"/>
-                    <TodoItem item="asdasd"/>
-                </ul>
+                <h1>Todo List</h1>
+                <div className='TodoList-Container'>
+                    { Todos }
+                </div>
                 <NewTodoForm addItem={this.addItem} />
             </section>
         );
