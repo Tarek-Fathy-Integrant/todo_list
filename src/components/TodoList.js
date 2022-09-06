@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 
 import TodoItem from './TodoItem';
 import NewTodoForm from './NewTodoForm';
@@ -15,18 +14,34 @@ class TodoList extends Component {
         }
         this.addItem = this.addItem.bind(this);
         this.deleteItem = this.deleteItem.bind(this);
+        this.editItem = this.editItem.bind(this);
     }
     addItem(itemInfo) {
         const newTodos = [...this.state.Todos, {...itemInfo} ]
         this.setState({ Todos: newTodos });
     }
-    deleteItem(key) {
-        const newTodos = this.state.Todos.filter(Todo => Todo.key !== key);
-        this.setState({ Todos: newTodos })
+    deleteItem(id) {
+        this.setState({ 
+            Todos: this.state.Todos.filter(Todo => Todo.id !== id) 
+        })
+    }
+    editItem(id, itemInfo){
+        const updatedTodos = this.state.Todos.map((Todo) => {
+            if(Todo.id === id){
+                return {...Todo, item: itemInfo}
+            }
+            return Todo
+        });
+        this.setState({Todos: updatedTodos});
     }
     render() {
         const Todos = this.state.Todos.map((Todo) => {
-            return <TodoItem key={uuidv4()} item={Todo.item} deleteItem={this.deleteItem} />
+            return <TodoItem 
+            key={Todo.id} 
+            id={Todo.id}
+            item={Todo.item} 
+            editItem = {this.editItem}
+            deleteItem = {this.deleteItem} />
         })
         return (
             <section className='TodoList'>
