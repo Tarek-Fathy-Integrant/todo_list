@@ -12,7 +12,7 @@ class NewTodoForm extends Component {
     }
     handleSubmit(evt) {
         evt.preventDefault();
-        this.props.addItem({...this.state, id: uuidv4()});
+        this.props.addItem({...this.state, id: uuidv4(), isCompleted: false});
         this.setState({ item: "" });
     }
     handleChange(evt) {
