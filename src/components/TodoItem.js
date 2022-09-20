@@ -32,9 +32,9 @@ class TodoItem extends Component {
     handleChange(evt) {
         this.setState({ [evt.target.name]: evt.target.value })
     }
-    toggleCompletion(evt){
+    toggleCompletion(evt) {
         this.setState((state) => {
-            return {isCompleted: !state.isCompleted};
+            return { isCompleted: !state.isCompleted };
         });
     }
     render() {
@@ -42,7 +42,7 @@ class TodoItem extends Component {
         if (this.state.isEditing) {
             result =
                 <div className='TodoItem'>
-                    <form onSubmit={this.handleSave}>
+                    <form onSubmit={this.handleSave} className="Item-form">
                         <input type="text" name="item" value={this.state.item} onChange={this.handleChange} />
                         <button>Save</button>
                     </form>
@@ -50,11 +50,13 @@ class TodoItem extends Component {
         } else {
             result =
                 <div className='TodoItem'>
-                    <span onClick={this.toggleCompletion} className={this.state.isCompleted ? "Completed" : ""}>
+                    <span onClick={this.toggleCompletion} className={this.state.isCompleted ? "Todo-task Completed" : "Todo-task"}>
                         {this.state.item}
                     </span>
-                    <i onClick={this.handleEdit} className="fa-solid fa-pen-to-square"></i>
-                    <i onClick={this.handleDelete} className="fa-solid fa-trash"></i>
+                    <div className='icons'>
+                        <button onClick={this.handleEdit}><i className="fa-solid fa-pen-to-square"></i></button>
+                        <button onClick={this.handleDelete}><i className="fa-solid fa-trash"></i></button>
+                    </div>
                 </div>
         }
         return (

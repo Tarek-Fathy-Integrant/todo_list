@@ -45,7 +45,7 @@ class TodoList extends Component {
         })
         return (
             <section className='TodoList'>
-                <h1>Todo List</h1>
+                <h1>Todo List<span>A Simple React App</span></h1>
                 <div className='TodoList-Container'>
                     { Todos }
                 </div>

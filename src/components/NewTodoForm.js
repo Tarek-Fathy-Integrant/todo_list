@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import './NewTodoForm.css'
 
 class NewTodoForm extends Component {
     constructor(props) {
@@ -21,7 +22,7 @@ class NewTodoForm extends Component {
     render() {
         return (
             <div>
-                <form>
+                <form className='NewTodoForm'>
                     <input
                         type="text"
                         name="item"
